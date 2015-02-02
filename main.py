@@ -1,10 +1,12 @@
-import webapp2
+from flask import Flask
 
-class MainPage(webapp2.RequestHandler):
-  def get(self):
-    self.response.headers['Content-Type'] = 'text/plain'
-    self.response.write('Hello, World!')
+app = Flask(__name__)
+app.config["DEBUG"] = True
 
-app = webapp2.WSGIApplication([
-      ('/', MainPage),
-    ], debug=True)
+@app.route("/")
+def main_page():
+  return "hello me!"
+
+@app.errorhandler(404)
+def page_not_found(e):
+  return "Sorry, no page found.", 404
