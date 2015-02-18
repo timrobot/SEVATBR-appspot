@@ -1,9 +1,9 @@
 var universe = { up: false, down: false, left: false, right: false };
 
-function startSendingToServer() {
+function sendJoinsToServer() {
   // set refresh rate to send data at 10Hz
   // compress data
-  var bitfield = 0x00000000; // 8 bit bitfield
+  var bitfield = 0x00000000; // 4 byte bitfield
   var fields = { u: 0x01, d: 0x02, l: 0x04, r: 0x08 };
   bitfield = universe.up ?
       (bitfield | fields.u) : (bitfield & ~fields.u);
@@ -27,8 +27,6 @@ function startSendingToServer() {
       console.log(xhr.response);
     }
   });
-
-  setTimeout(startSendingToServer, 100);
 }
 
 $(document).ready(function() {
@@ -40,28 +38,34 @@ $(document).ready(function() {
   });
   $("#topbutton").mousedown(function() {
     universe.up = true;
+    sendJoinsToServer();
   });
   $("#topbutton").mouseup(function() {
     universe.up = false;
+    sendJoinsToServer();
   });
   $("#leftbutton").mousedown(function() {
     universe.left = true;
+    sendJoinsToServer();
   });
   $("#leftbutton").mouseup(function() {
     universe.left = false;
+    sendJoinsToServer();
   });
   $("#rightbutton").mousedown(function() {
     universe.right = true;
+    sendJoinsToServer();
   });
   $("#rightbutton").mouseup(function() {
     universe.right = false;
+    sendJoinsToServer();
   });
   $("#bottombutton").mousedown(function() {
     universe.down = true;
+    sendJoinsToServer();
   });
   $("#bottombutton").mouseup(function() {
     universe.down = false;
+    sendJoinsToServer();
   });
-
-  startSendingToServer();
 });
