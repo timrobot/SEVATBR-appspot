@@ -7,6 +7,8 @@ threadsafe: true
 handlers:
 - url: /.*
   script: main.app
+- url: /js
+  static_dir: js
 
 libraries:
 - name: jinja2

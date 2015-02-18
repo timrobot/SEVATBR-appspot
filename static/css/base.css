@@ -1,0 +1,143 @@
+body {
+  font-size: 14px;
+  font-family: "Times New Roman";
+}
+
+#container {
+  margin: 0px auto;
+  width: 320px;
+  background-color: white;
+  min-height: 500px;
+  border: solid 2px black;
+}
+
+#container #title {
+  width: calc(100% - 12px);
+  background-color: yellow;
+  padding: 6px;
+}
+
+#passkey {
+  width: 240px;
+  margin: 0px auto;
+  margin-top: 150px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 28px;
+}
+
+#passkey #password {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: solid 1px #808080;
+  border-radius: 4px;
+  padding: 6px;
+  font-size: 16px;
+}
+
+#passkey #error {
+  color: red;
+  font-size: 12px;
+  visibility: hidden;
+  text-align: center;
+  line-height: 16px;
+}
+
+#passkey #submit {
+  margin: 6px auto;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 32px;
+  border-radius: 8px;
+  width: 120px;
+}
+
+#buttons {
+  width: 126px;
+  height: 126px;
+  margin: 0px auto;
+  margin-top: 150px;
+}
+
+.button {
+  height: 32px;
+  width: 32px;
+  padding: 4px;
+  border-radius: 20px;
+  border: solid 1px black;
+  background-color: white;
+}
+
+.button:hover {
+  background-color: cyan;
+}
+
+#topbutton {
+  margin: 0px 0px 0px 42px;
+}
+
+#leftbutton {
+  float: left;
+  margin: 0px 0px 0px 0px;
+}
+
+#rightbutton {
+  float: right;
+  margin: 0px 0px 0px 0px;
+}
+
+#bottombutton {
+  float: none;
+  margin: 42px 0px 0px 42px;
+}
+
+.toparrow {
+  height: 0px;
+  width: 0px;
+  border-top: solid 0px white;
+  border-left: solid 16px rgba(255, 255, 255, 0);
+  border-right: solid 16px rgba(255, 255, 255, 0);
+  border-bottom: solid 16px black;
+  margin: 6px 10px 0px 0px;
+}
+
+.leftarrow {
+  height: 0px;
+  width: 0px;
+  border-top: solid 16px rgba(255, 255, 255, 0);
+  border-left: solid 0px white;
+  border-right: solid 16px black;
+  border-bottom: solid 16px rgba(255, 255, 255, 0);
+  margin: 0px 0px 10px 6px;
+}
+
+.rightarrow {
+  height: 0px;
+  width: 0px;
+  border-top: solid 16px rgba(255, 255, 255, 0);
+  border-left: solid 16px black;
+  border-right: solid 0px white;
+  border-bottom: solid 16px rgba(255, 255, 255, 0);
+  margin: 0px 0px 6px 10px;
+}
+
+.bottomarrow {
+  height: 0px;
+  width: 0px;
+  border-top: solid 16px black;
+  border-left: solid 16px rgba(255, 255, 255, 0);
+  border-right: solid 16px rgba(255, 255, 255, 0);
+  border-bottom: solid 0px white;
+  margin: 10px 6px 0px 0px;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
