@@ -4,6 +4,9 @@ import random
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+# controls
+controls = 0
+
 # compute as fast as possible using dynamic memory
 primes = [2]
 def isPrime(n):
@@ -69,8 +72,14 @@ def interface():
 @app.route("/manual", methods = ["POST"])
 def manual():
   # accept incoming POST request joins
+  global controls
   controls = request.form["controls"]
   return "bitfield received"
+
+@app.route("/manual_feedback", methods = ["GET"])
+def manual_feedback():
+  global controls
+  return "{ feedback: " + str(controls) + " }"
 
 @app.errorhandler(404)
 def page_not_found(e):

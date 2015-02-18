@@ -68,4 +68,19 @@ $(document).ready(function() {
     universe.down = false;
     sendJoinsToServer();
   });
+  $("#stopbutton").mousedown(function() {
+    universe.up = false;
+    universe.left = false;
+    universe.right = false;
+    universe.down = false;
+    sendJoinsToServer();
+  });
+  $("#stopbutton").mouseup(function() {
+    // just in case
+    universe.up = false;
+    universe.left = false;
+    universe.right = false;
+    universe.down = false;
+    sendJoinsToServer();
+  });
 });
