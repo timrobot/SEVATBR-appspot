@@ -1,18 +1,32 @@
-var universe = { up: false, down: false, left: false, right: false };
+var universe = {
+  up: false, down: false, left: false, right: false,
+  lift: false, drop: false, grab: false, release: false
+};
 
 function sendJoinsToServer() {
   // set refresh rate to send data at 10Hz
   // compress data
   var bitfield = 0x00000000; // 4 byte bitfield
-  var fields = { u: 0x01, d: 0x02, l: 0x04, r: 0x08 };
+  var fields = {
+    up: 0x01, down: 0x02, left: 0x04, right: 0x08,
+    lift: 0x10, drop: 0x20, grab: 0x40, release: 0x80
+  };
   bitfield = universe.up ?
-      (bitfield | fields.u) : (bitfield & ~fields.u);
+    (bitfield | fields.up) : (bitfield & ~fields.up);
   bitfield = universe.down ?
-      (bitfield | fields.d) : (bitfield & ~fields.d);
+    (bitfield | fields.down) : (bitfield & ~fields.down);
   bitfield = universe.left ?
-      (bitfield | fields.l) : (bitfield & ~fields.l);
+    (bitfield | fields.left) : (bitfield & ~fields.left);
   bitfield = universe.right ?
-      (bitfield | fields.r) : (bitfield & ~fields.r);
+    (bitfield | fields.right) : (bitfield & ~fields.right);
+  bitfield = universe.lift ?
+    (bitfield | fields.lift) : (bitfield & ~fields.lift);
+  bitfield = universe.drop ?
+    (bitfield | fields.drop) : (bitfield & ~fields.drop);
+  bitfield = universe.grab ?
+    (bitfield | fields.grab) : (bitfield & ~fields.grab);
+  bitfield = universe.release ?
+    (bitfield | fields.release) : (bitfield & ~fields.release);
 
   $.ajax({
     type: "POST",
@@ -82,5 +96,47 @@ $(document).ready(function() {
     universe.right = false;
     universe.down = false;
     sendJoinsToServer();
+  });
+  $("#liftbutton").mousedown(function() {
+    universe.lift = true;
+    sendJoinsToServer();
+  });
+  $("#liftbutton").mouseup(function() {
+    universe.lift = false;
+    sendJoinsToServer();
+  });
+  $("#grabbutton").mousedown(function() {
+    universe.grab = true;
+    sendJoinsToServer();
+  });
+  $("#grabbutton").mouseup(function() {
+    universe.grab = false;
+    sendJoinsToServer();
+  });
+  $("#releasebutton").mousedown(function() {
+    universe.release = true;
+    sendJoinsToServer();
+  });
+  $("#releasebutton").mouseup(function() {
+    universe.release = false;
+    sendJoinsToServer();
+  });
+  $("#dropbutton").mousedown(function() {
+    universe.drop = true;
+    sendJoinsToServer();
+  });
+  $("#dropbutton").mouseup(function() {
+    universe.drop = false;
+    sendJoinsToServer();
+  });
+  $("body").mouseup(function() {
+    universe.up = false;
+    universe.down = false;
+    universe.left = false;
+    universe.right = false;
+    universe.lift = false;
+    universe.drop = false;
+    universe.grab = false;
+    universe.release = false;
   });
 });
