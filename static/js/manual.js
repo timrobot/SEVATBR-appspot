@@ -61,40 +61,44 @@ $(document).ready(function() {
   $("#topbutton").mousedown(function() {
     universe.up = true;
     sendJoinsToServer();
+    setStatus("Moving up");
   });
   $("#topbutton").mouseup(function() {
     universe.up = false;
     sendJoinsToServer();
-    setStatus("Moving up");
+    setStatus("");
   });
   $("#leftbutton").mousedown(function() {
     universe.left = true;
     sendJoinsToServer();
+    setStatus("Moving left");
   });
   $("#leftbutton").mouseup(function() {
     universe.left = false;
     sendJoinsToServer();
-    setStatus("Moving left");
+    setStatus("");
   });
   $("#rightbutton").mousedown(function() {
     universe.right = true;
     sendJoinsToServer();
+    setStatus("Moving right");
   });
   $("#rightbutton").mouseup(function() {
     universe.right = false;
     sendJoinsToServer();
-    setStatus("Moving right");
+    setStatus("");
   });
   $("#bottombutton").mousedown(function() {
     universe.down = true;
     sendJoinsToServer();
+    setStatus("Moving down");
   });
   $("#bottombutton").mouseup(function() {
     universe.down = false;
     sendJoinsToServer();
-    setStatus("Moving down");
+    setStatus("");
   });
-  $("#topbutton").mousedown(function() {
+  $("#stopbutton").mousedown(function() {
     universe.up = false;
     universe.left = false;
     universe.right = false;
@@ -112,38 +116,42 @@ $(document).ready(function() {
   $("#liftbutton").mousedown(function() {
     universe.lift = true;
     sendJoinsToServer();
+    setStatus("Moving grabber up");
   });
   $("#liftbutton").mouseup(function() {
     universe.lift = false;
     sendJoinsToServer();
-    setStatus("Moving grabber up");
+    setStatus("");
   });
   $("#grabbutton").mousedown(function() {
     universe.grab = true;
     sendJoinsToServer();
+    setStatus("Grabbing");
   });
   $("#grabbutton").mouseup(function() {
     universe.grab = false;
     sendJoinsToServer();
-    setStatus("Grabbing");
+    setStatus("");
   });
   $("#releasebutton").mousedown(function() {
     universe.release = true;
     sendJoinsToServer();
+    setStatus("Releasing");
   });
   $("#releasebutton").mouseup(function() {
     universe.release = false;
     sendJoinsToServer();
-    setStatus("Releasing");
+    setStatus("");
   });
   $("#dropbutton").mousedown(function() {
     universe.drop = true;
     sendJoinsToServer();
+    setStatus("Moving grabber down");
   });
   $("#dropbutton").mouseup(function() {
     universe.drop = false;
     sendJoinsToServer();
-    setStatus("Moving grabber down");
+    setStatus("");
   });
   $("body").mouseup(function() {
     universe.up = false;
