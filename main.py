@@ -50,7 +50,7 @@ def isValid(passkey):
 @app.route("/")
 @app.route("/login")
 def login():
-  login_page = render_template("manual.html")
+  login_page = render_template("login.html")
   template_page = render_template("template.html")
   login_page = template_page.replace("[[content]]", login_page)
   return login_page
@@ -74,7 +74,7 @@ def manual():
   # accept incoming POST request joins
   global controls
   controls = request.form["controls"]
-  return "bitfield received"
+  return "bitfield received %s" % (controls)
 
 @app.route("/manual_feedback", methods = ["GET"])
 def manual_feedback():

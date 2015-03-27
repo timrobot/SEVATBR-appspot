@@ -1,6 +1,7 @@
 var universe = {
   up: false, down: false, left: false, right: false,
-  lift: false, drop: false, grab: false, release: false
+  lift: false, drop: false, grab: false, release: false,
+  override: true
 };
 
 function sendJoinsToServer() {
@@ -8,8 +9,9 @@ function sendJoinsToServer() {
   // compress data
   var bitfield = 0x00000000; // 4 byte bitfield
   var fields = {
-    up: 0x01, down: 0x02, left: 0x04, right: 0x08,
-    lift: 0x10, drop: 0x20, grab: 0x40, release: 0x80
+    up: 0x0001, down: 0x0002, left: 0x0004, right: 0x0008,
+    lift: 0x0010, drop: 0x0020, grab: 0x0040, release: 0x0080,
+    override: 0x0100
   };
   bitfield = universe.up ?
     (bitfield | fields.up) : (bitfield & ~fields.up);
@@ -27,6 +29,8 @@ function sendJoinsToServer() {
     (bitfield | fields.grab) : (bitfield & ~fields.grab);
   bitfield = universe.release ?
     (bitfield | fields.release) : (bitfield & ~fields.release);
+  bitfield = universe.override ?
+    (bitfield | fields.override) : (bitfield & ~fields.override);
 
   $.ajax({
     type: "POST",
@@ -82,7 +86,7 @@ $(document).ready(function() {
     universe.down = false;
     sendJoinsToServer();
   });
-  $("#stopbutton").mousedown(function() {
+  $("#topbutton").mousedown(function() {
     universe.up = false;
     universe.left = false;
     universe.right = false;
@@ -138,5 +142,26 @@ $(document).ready(function() {
     universe.drop = false;
     universe.grab = false;
     universe.release = false;
+    sendJoinsToServer();
+  });
+  $("#enable").mouseover(function() {
+    $("body").css("cursor", "pointer");
+  });
+  $("#enable").mouseout(function() {
+    $("body").css("cursor", "default");
+  });
+  $("#disable").mouseover(function() {
+    $("body").css("cursor", "pointer");
+  });
+  $("#disable").mouseout(function() {
+    $("body").css("cursor", "default");
+  });
+  $("#enable").mouseup(function() {
+    universe.override = true;
+    sendJoinsToServer();
+  });
+  $("#disable").mouseup(function() {
+    universe.override = false;
+    sendJoinsToServer();
   });
 });
