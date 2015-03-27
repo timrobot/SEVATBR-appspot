@@ -4,6 +4,10 @@ var universe = {
   override: true
 };
 
+function setStatus(msg){
+  $("#status").html(msg);
+}
+
 function sendJoinsToServer() {
   // set refresh rate to send data at 10Hz
   // compress data
@@ -61,6 +65,7 @@ $(document).ready(function() {
   $("#topbutton").mouseup(function() {
     universe.up = false;
     sendJoinsToServer();
+    setStatus("Moving up");
   });
   $("#leftbutton").mousedown(function() {
     universe.left = true;
@@ -69,6 +74,7 @@ $(document).ready(function() {
   $("#leftbutton").mouseup(function() {
     universe.left = false;
     sendJoinsToServer();
+    setStatus("Moving left");
   });
   $("#rightbutton").mousedown(function() {
     universe.right = true;
@@ -77,6 +83,7 @@ $(document).ready(function() {
   $("#rightbutton").mouseup(function() {
     universe.right = false;
     sendJoinsToServer();
+    setStatus("Moving right");
   });
   $("#bottombutton").mousedown(function() {
     universe.down = true;
@@ -85,6 +92,7 @@ $(document).ready(function() {
   $("#bottombutton").mouseup(function() {
     universe.down = false;
     sendJoinsToServer();
+    setStatus("Moving down");
   });
   $("#topbutton").mousedown(function() {
     universe.up = false;
@@ -108,6 +116,7 @@ $(document).ready(function() {
   $("#liftbutton").mouseup(function() {
     universe.lift = false;
     sendJoinsToServer();
+    setStatus("Moving grabber up");
   });
   $("#grabbutton").mousedown(function() {
     universe.grab = true;
@@ -116,6 +125,7 @@ $(document).ready(function() {
   $("#grabbutton").mouseup(function() {
     universe.grab = false;
     sendJoinsToServer();
+    setStatus("Grabbing");
   });
   $("#releasebutton").mousedown(function() {
     universe.release = true;
@@ -124,6 +134,7 @@ $(document).ready(function() {
   $("#releasebutton").mouseup(function() {
     universe.release = false;
     sendJoinsToServer();
+    setStatus("Releasing");
   });
   $("#dropbutton").mousedown(function() {
     universe.drop = true;
@@ -132,6 +143,7 @@ $(document).ready(function() {
   $("#dropbutton").mouseup(function() {
     universe.drop = false;
     sendJoinsToServer();
+    setStatus("Moving grabber down");
   });
   $("body").mouseup(function() {
     universe.up = false;
@@ -159,9 +171,15 @@ $(document).ready(function() {
   $("#enable").mouseup(function() {
     universe.override = true;
     sendJoinsToServer();
+    $(this).addClass("selected");
+    $("#disable").removeClass("selected");
+    setStatus("Entering manual mode");
   });
   $("#disable").mouseup(function() {
     universe.override = false;
     sendJoinsToServer();
+    $(this).addClass("selected");
+    $("#enable").removeClass("selected");
+    setStatus("Entering automous mode");
   });
 });
